@@ -1,7 +1,6 @@
 .pacman {
     width: 60px;
     height: 63px;
-    border-radius: 50%;
     position: absolute;
     .svg {
         fill: $color2;
@@ -17,4 +16,9 @@
     &.down {
         transform: rotate(90deg);
     }
+}
+.tank {
+    width:60px;
+     height:63px;
+    border-radius:50%;
 }

@@ -4,6 +4,12 @@ import Pacman from '../Pacman/pacman.jsx';
 import Ghost from '../Ghost/ghost.jsx';
 import Food from '../Food/food.jsx';
 
+
+import liv from '../../../assets/images/liv.png';
+import bri from '../../../assets/images/bri.png';
+import feetch from '../../../assets/images/feetch.png';
+import mazur from '../../../assets/images/mazur.png';
+
 class Scene extends React.Component {
 
 	componentDidMount() {
@@ -20,7 +26,7 @@ class Scene extends React.Component {
 		var pacmanLastY = this.refs.pacman.state.position.top + this.refs.pacman.props.pacmanSize;
 
 		for (var i = 1; i <= 4; i++) {
-			var currentGhost = this.refs['ghost' + i];
+			var currentGhost = this.refs['friend' + i];
 			var currentGhostX = currentGhost.state.position.left;
 			var currentGhostY = currentGhost.state.position.top;
 			var currentGhostLastX = currentGhost.state.position.left + currentGhost.props.ghostSize;
@@ -43,7 +49,7 @@ class Scene extends React.Component {
 
 	killGhosts() {
 		for (var i = 1; i <= 4; i++) {
-			var currentGhost = this.refs['ghost' + i];
+			var currentGhost = this.refs['friend' + i];
 			currentGhost.kill();
 		}
 
@@ -101,10 +107,10 @@ class Scene extends React.Component {
 			<div className="scene">
 				{foods}
 				<Pacman ref="pacman"></Pacman>
-				<Ghost color="red" ref="ghost1"></Ghost>
-				<Ghost color="green" ref="ghost2"></Ghost>
-				<Ghost color="blue" ref="ghost3"></Ghost>
-				<Ghost color="orange" ref="ghost4"></Ghost>
+				<Ghost friend={liv} ref="friend1"></Ghost>
+				<Ghost friend={bri} ref="friend2"></Ghost>
+				<Ghost friend={feetch} ref="friend3"></Ghost>
+				<Ghost friend={mazur} ref="friend4"></Ghost>
 			</div>
 		);
 	}

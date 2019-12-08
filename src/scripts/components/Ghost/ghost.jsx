@@ -3,11 +3,13 @@ import ReactDOM from 'react-dom';
 import SVGInline from "react-svg-inline"
 import icon from '../../../assets/images/ghost.svg';
 
+
+
 class Ghost extends React.Component {
 
 	constructor(props) {
 		super(props);
-		this.state = {position: {top: 300, left: 300}, direction: 'left', color: this.props.color };
+		this.state = {position: {top: 300, left: 300}, direction: 'left'};
 	}
 
 	componentDidMount() {
@@ -19,8 +21,6 @@ class Ghost extends React.Component {
 	kill() {
 		clearInterval(this.moveInterval);
 		clearInterval(this.changeDirectionInterval);
-		this.setState({color: 'white' });
-
 	}
 
 	changeDirection() {
@@ -60,8 +60,8 @@ class Ghost extends React.Component {
 
 	render() {
 		return (
-			<div style = {this.state.position} className = {'ghost ' + (this.state.color)}>
-				<SVGInline svg = {icon} />
+			<div style = {this.state.position} className = {"ghost "+this.props.friend}>
+				< img src={this.props.friend} className="friend" height="40px" width="40px" />
 			</div>
 		);
 	}
