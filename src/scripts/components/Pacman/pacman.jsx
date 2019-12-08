@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import SVGInline from "react-svg-inline"
-import icon from '../../../assets/images/pacman.svg';
+import icon from '../../../assets/images/pacman.jpg';
 
 class Pacman extends React.Component {
 
@@ -69,7 +69,7 @@ class Pacman extends React.Component {
 	render() {
 		return (
 			<div style = {this.state.position} className = {'pacman ' + (this.state.looking)}>
-				<SVGInline svg = {icon} />
+				< img src={icon} width="60px" height="63px"/>
 			</div>
 		);
 	}
