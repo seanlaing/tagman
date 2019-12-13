@@ -5,7 +5,7 @@ class Header extends React.Component {
 
 	constructor(props) {
 		super(props);
-		this.state = {points: 0, playing: true, timer:30};
+		this.state = {points: 0, playing: true, timer:60};
 	}
 
 	componentDidMount() {
