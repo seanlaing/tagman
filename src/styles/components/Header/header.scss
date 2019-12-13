@@ -8,16 +8,25 @@
 
     .title {
         font-size: 80px;
-        width: 50%;
+        width: 33%;
         text-align: left;
         margin-top: 10px;
         margin-left: 150px;
     }
+    .middle {
+        width: 33%;
+        text-align: center;
+    }
+    .timer {
+        font-size: 40px;
+        margin-top: 10px;
+    }
 
     .score {
         font-size: 40px;
-        width: 50%;
+        width: 33%;
         text-align: right;
         margin-top: 10px;
     }
+    
 }
