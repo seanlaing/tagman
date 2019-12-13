@@ -14,10 +14,6 @@ class Food extends React.Component {
 		};
 	}
 
-	componentDidMount() {
-		this.container = ReactDOM.findDOMNode(this);
-	}
-
 	ate() {
 		this.setState({
 			hidden: true

@@ -7,7 +7,8 @@ class Pacman extends React.Component {
 
 	constructor(props) {
 		super(props);
-		this.state = { looking: 'right', position: {top: 0, left: 0} };
+		this.state = { looking: 'right', position: {top: 0, left: 0}}
+		//this.friend= this.props.friend;
 	}
 
 	componentDidMount() {
@@ -69,7 +70,7 @@ class Pacman extends React.Component {
 	render() {
 		return (
 			<div style = {this.state.position} className = {'pacman ' + (this.state.looking)}>
-				< img src={icon} className = "tank" />
+				< img src={this.props.friend}  className = "tank" />
 			</div>
 		);
 	}

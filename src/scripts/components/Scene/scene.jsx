@@ -4,28 +4,49 @@ import Pacman from '../Pacman/pacman.jsx';
 import Ghost from '../Ghost/ghost.jsx';
 import Food from '../Food/food.jsx';
 
-
+import tbt from '../../../assets/images/tbt.png';
 import liv from '../../../assets/images/liv.png';
 import bri from '../../../assets/images/bri.png';
 import feetch from '../../../assets/images/feetch.png';
 import mazur from '../../../assets/images/mazur.png';
+import slocum from '../../../assets/images/slocum.png';
+import wordferri from '../../../assets/images/wordferri.png';
+import squeege from '../../../assets/images/squeege.png';
+import ace from '../../../assets/images/ace.png';
+import kenny from '../../../assets/images/kenny.png';
+import squirrel from '../../../assets/images/squirrel.png';
+import smash from '../../../assets/images/smash.png';
 
 class Scene extends React.Component {
-
+	constructor(props) {
+		super(props);
+		this.state = {
+		pacman:tbt,
+		ghosts:[liv,bri,feetch,mazur,slocum,wordferri,squeege,ace,kenny,squirrel,smash]
+	}
+}
+	
 	componentDidMount() {
 		this.container = ReactDOM.findDOMNode(this);
 		this.crashed = false;
 		this.intervalCrash = setInterval(this.lookForCrash.bind(this), 100);
 		this.intervalFood = setInterval(this.lookForEat.bind(this), 100);
 	}
+	
 
 	lookForCrash() {
-		var pacmanX = this.refs.pacman.state.position.left;
-		var pacmanY = this.refs.pacman.state.position.top;
-		var pacmanLastX = this.refs.pacman.state.position.left + this.refs.pacman.props.pacmanSize;
-		var pacmanLastY = this.refs.pacman.state.position.top + this.refs.pacman.props.pacmanSize;
+		let pacman1;
+		if (this.refs.pacman.state) {
+			pacman1 = this.refs.pacman.state
+		}
+	//	console.log("pacman", pacman1);
+		
+		var pacmanX = pacman1.position.left;
+		var pacmanY = pacman1.position.top;
+		var pacmanLastX = pacman1.position.left + this.refs.pacman.props.pacmanSize;
+		var pacmanLastY = pacman1.position.top + this.refs.pacman.props.pacmanSize;
 
-		for (var i = 1; i <= 4; i++) {
+		for (var i = 0; i <= this.state.ghosts.length; i++) {
 			var currentGhost = this.refs['friend' + i];
 			var currentGhostX = currentGhost.state.position.left;
 			var currentGhostY = currentGhost.state.position.top;
@@ -34,26 +55,41 @@ class Scene extends React.Component {
 
 			if ((pacmanX >= currentGhostX && pacmanX <= currentGhostLastX) || (pacmanLastX >= currentGhostX && pacmanLastX <= currentGhostLastX)) {
 				if ((pacmanY >= currentGhostY && pacmanY <= currentGhostLastY) || (pacmanLastY >= currentGhostY && pacmanLastY <= currentGhostLastY)) {
-					this.crashed = true;
+					//var temp = this.refs['friend' + i].friend;
+					//currentGhost.friend = this.refs.pacman.friend;
+					//this.refs.pacman.friend=temp;
+
+					const temp = this.state.ghosts;
+					const pacmantemp = this.state.pacman;
+					temp.splice(i,1, pacmantemp);
+					this.setState({
+						pacman:currentGhost.props.friend,
+						ghosts:temp
+					});
+					currentGhost.kill();
+					console.log("cg props" , currentGhost.props.friend , "cg state" , currentGhost.state.friend );
+					this.props.increase();
 				}
 			}
 
-			if (this.crashed) {
-				this.props.gameOver();
-				clearInterval(this.intervalCrash);
-				this.killGhosts();
-				break;
-			}
+			// if (this.crashed) {
+			// 	this.props.gameOver();
+			// 	clearInterval(this.intervalCrash);
+
+			// 	//this.killGhosts();
+			// 	break;
+			// }
 		}
 	}
 
-	killGhosts() {
-		for (var i = 1; i <= 4; i++) {
+/*killGhosts() {
+
+		/*for (var i = 1; i <= let numberOfPlayers =11;; i++) {
 			var currentGhost = this.refs['friend' + i];
 			currentGhost.kill();
 		}
 
-	}
+}*/
 
 	lookForEat() {
 		var pacmanX = this.refs.pacman.state.position.left;
@@ -72,7 +108,6 @@ class Scene extends React.Component {
 				if ((pacmanY >= currentFoodY && pacmanY <= currentFoodLastY) || (pacmanLastY >= currentFoodY && pacmanLastY <= currentFoodLastY)) {
 					if (!currentFood.state.hidden) {
 						currentFood.ate();
-						this.props.increase();
 					}
 				}
 			}
@@ -102,15 +137,14 @@ class Scene extends React.Component {
 			currentLeft = currentLeft + this.props.foodSize;
 		    foods.push(<Food ref={ 'food' + i } position = {position} key = {i} />);
 		}
-
+		const ghosts = this.state.ghosts.map((ghost, index) => {
+			return <Ghost key={index} friend={ghost} ref={`friend${index}`}></Ghost>
+		})
 		return (
 			<div className="scene">
 				{foods}
-				<Pacman ref="pacman"></Pacman>
-				<Ghost friend={liv} ref="friend1"></Ghost>
-				<Ghost friend={bri} ref="friend2"></Ghost>
-				<Ghost friend={feetch} ref="friend3"></Ghost>
-				<Ghost friend={mazur} ref="friend4"></Ghost>
+				<Pacman friend={this.state.pacman} ref="pacman"></Pacman>
+				{ghosts}
 			</div>
 		);
 	}

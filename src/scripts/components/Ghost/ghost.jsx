@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import SVGInline from "react-svg-inline"
-import icon from '../../../assets/images/ghost.svg';
+import SVGInline from "react-svg-inline";
 
 
 
@@ -9,7 +8,8 @@ class Ghost extends React.Component {
 
 	constructor(props) {
 		super(props);
-		this.state = {position: {top: 300, left: 300}, direction: 'left'};
+		this.state = {position: {top: 300, left: 300}, direction: 'left'}
+		// this.friend= props.friend;
 	}
 
 	componentDidMount() {
@@ -18,9 +18,9 @@ class Ghost extends React.Component {
 		this.changeDirectionInterval = setInterval(this.changeDirection.bind(this), 500);
 	}
 
+
 	kill() {
-		clearInterval(this.moveInterval);
-		clearInterval(this.changeDirectionInterval);
+		this.setState({position: {top: 0, left: 0}, direction: 'left'}); 
 	}
 
 	changeDirection() {
@@ -58,7 +58,7 @@ class Ghost extends React.Component {
 		}
 	}
 
-	render() {
+render() {
 		return (
 			<div style = {this.state.position} className = {"ghost "+this.props.friend}>
 				< img src={this.props.friend} className="friend" height="40px" width="40px" />

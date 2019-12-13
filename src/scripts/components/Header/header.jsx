@@ -26,8 +26,8 @@ class Header extends React.Component {
 	render() {
 		return (
 			<div className="header">
-				<span className="left title">PACMAN</span>
-				<span className="right score">SCORE: <span className="points">{this.state.points}</span></span>
+				<span className="left title">TAGMAN</span>
+				<span className="right score">TAGS: <span className="points">{this.state.points}</span></span>
 			</div>
 		);
 	}
