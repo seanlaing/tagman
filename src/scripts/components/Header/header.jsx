@@ -5,7 +5,7 @@ class Header extends React.Component {
 
 	constructor(props) {
 		super(props);
-		this.state = {points: 0, playing: true, timer:60};
+		this.state = {points: 0, playing: true, timer:30};
 	}
 
 	componentDidMount() {
@@ -17,7 +17,7 @@ class Header extends React.Component {
 		},1000);
 	}
 	componentDidUpdate(){
-		if (this.state.timer<1){
+		if ((this.state.timer<1)||(this.state.points>10)){
 			window.location.href="https://www.youtube.com/watch?v=dQw4w9WgXcQ";
 			clearInterval(countDown);
 		}
