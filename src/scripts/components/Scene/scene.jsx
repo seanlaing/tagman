@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {useSwipeable, Swipeable} from 'react-swipeable'
+
 import Pacman from '../Pacman/pacman.jsx';
 import Ghost from '../Ghost/ghost.jsx';
 import Food from '../Food/food.jsx';
@@ -55,9 +57,6 @@ class Scene extends React.Component {
 
 			if ((pacmanX >= currentGhostX && pacmanX <= currentGhostLastX) || (pacmanLastX >= currentGhostX && pacmanLastX <= currentGhostLastX)) {
 				if ((pacmanY >= currentGhostY && pacmanY <= currentGhostLastY) || (pacmanLastY >= currentGhostY && pacmanLastY <= currentGhostLastY)) {
-					//var temp = this.refs['friend' + i].friend;
-					//currentGhost.friend = this.refs.pacman.friend;
-					//this.refs.pacman.friend=temp;
 
 					const temp = this.state.ghosts;
 					const pacmantemp = this.state.pacman;
@@ -71,25 +70,8 @@ class Scene extends React.Component {
 					this.props.increase();
 				}
 			}
-
-			// if (this.crashed) {
-			// 	this.props.gameOver();
-			// 	clearInterval(this.intervalCrash);
-
-			// 	//this.killGhosts();
-			// 	break;
-			// }
 		}
 	}
-
-/*killGhosts() {
-
-		/*for (var i = 1; i <= let numberOfPlayers =11;; i++) {
-			var currentGhost = this.refs['friend' + i];
-			currentGhost.kill();
-		}
-
-}*/
 
 	lookForEat() {
 		var pacmanX = this.refs.pacman.state.position.left;
@@ -141,11 +123,11 @@ class Scene extends React.Component {
 			return <Ghost key={index} friend={ghost} ref={`friend${index}`}></Ghost>
 		})
 		return (
-			<div className="scene">
+			<Swipeable onSwipedLeft={(eventData) => eventHandler} className="scene">
 				{foods}
 				<Pacman friend={this.state.pacman} ref="pacman"></Pacman>
 				{ghosts}
-			</div>
+			</Swipeable>
 		);
 	}
 }

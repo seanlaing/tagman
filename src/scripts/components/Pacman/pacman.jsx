@@ -12,7 +12,7 @@ class Pacman extends React.Component {
 	}
 
 	componentDidMount() {
-		this.container = ReactDOM.findDOMNode(this);
+		//this.container = ReactDOM.findDOMNode(this);
 		setInterval(this.move.bind(this), 100);
 		document.addEventListener('keydown', this.handleKeyDown.bind(this));
 	}
