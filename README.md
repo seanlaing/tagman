@@ -1,10 +1,8 @@
-# pacman-react
-Pacman game created with react
+# tagman-react
+tagman game created with react
 
-Take a look to the [Demo](https://mbfassnacht.github.io/pacman-react/)
+Update this to be more relevant to my friends. [Demo](https://mbfassnacht.github.io/pacman-react/)
 
-
-[![pacman](https://github.com/mbfassnacht/assets/raw/master/images/pacman-react/react-pacman.png)](https://github.com/mbfassnacht/assets/raw/master/images/pacman-react/react-pacman.png)
 
 
 ## INSTALLATION DEPENDENCES
