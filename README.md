@@ -1,7 +1,7 @@
 # tagman-react
 tagman game created with react
 
-Update this to be more relevant to my friends. [Demo](https://mbfassnacht.github.io/pacman-react/)
+Updated this pacman game. [Demo](https://mbfassnacht.github.io/pacman-react/) to be more relevant to games played by my friends.
 
 
 
