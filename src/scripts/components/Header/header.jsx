@@ -18,7 +18,7 @@ class Header extends React.Component {
 	}
 	componentDidUpdate(){
 		if ((this.state.timer<1)||(this.state.points>10)){
-			window.location.href="https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+			window.alert("Timer finished")
 			clearInterval(countDown);
 		}
 	}
